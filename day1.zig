@@ -1,9 +1,7 @@
 const std = @import("std");
-const input = @embedFile("day1.txt");
+const utils = @import("utils.zig");
 
-fn absDiff(x: anytype, y: @TypeOf(x)) @TypeOf(x, y) {
-    return @abs(@max(x, y) - @min(x, y));
-}
+const input = @embedFile("day1.txt");
 
 pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
@@ -43,7 +41,7 @@ fn part1(alloc: std.mem.Allocator, left: []const u64, right: []const u64) !u64 {
     var res: u64 = 0;
 
     for (dleft, dright) |l, r| {
-        res += absDiff(l, r);
+        res += utils.absDiff(l, r);
     }
 
     return res;
